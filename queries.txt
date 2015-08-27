@@ -1,0 +1,83 @@
+GET xuan/book/_search
+{
+  "fields": ["book_title"], 
+  "partial_fields" : {
+    "date_created" : {
+      "include" : "date_created"
+    }
+  },
+
+  "query": {
+    "match": {
+      "html_body": {
+        "query": "search performance",
+        "operator" : "and"
+      }
+    }
+  }
+}
+
+POST xuan/book/_search?pretty=true
+{
+  "query": {
+    "match": {
+      "html_body": {
+        "query": "strange performance",
+        "operator" : "and"
+      }
+    }
+  },
+  "fields": ["book_title"],
+  "partial_fields" : {
+     "date_created" : {
+             "include" : "date_created"
+      }
+  },
+  "highlight": {
+    "fields": {"html_body": {"number_of_fragments": 6}}
+  },
+  "size": 5 // specify # of returned records
+}
+
+POST xuan/book/_search?pretty=true
+{
+  "query": {
+    "match": {
+      "html_body": {
+        "query": "strange performance",
+        "operator" : "and"
+      }
+    }
+  },
+  "query": {
+      "fuzzy": {
+          "html_body": "strage"
+      }
+  },
+  "fields": ["book_title"],
+  "partial_fields" : {
+     "date_created" : {
+             "include" : "date_created"
+      }
+  },
+  "highlight": {
+    "fields": {"html_body": {"number_of_fragments": 3}}
+  },
+  "size": 5 // specify # of returned records
+}
+
+
+
+GET /xuan/book/_search
+{
+  "fields": ["book_title"], 
+  "partial_fields" : {
+    "date_created" : {
+      "include" : "date_created"
+    }
+  },
+  "size": 5 // specify # of returned records
+}
+
+GET xuan/book/_count
+

@@ -1,0 +1,17 @@
+http://localhost:9200/xuan/_mapping/
+
+“xuan”:{“mappings”:
+	{“book":{“properties":
+		{“book_authors":{“type":"nested","properties":
+				{“first_name":{“type":"string","store":true},
+				"last_name":{“type":"string","store":true},
+				“middle_name”:{"type":"string","store":true}
+				}},
+		“book_title”:{"type":"string","store":true},
+		“date_created":{"type":"date","format":"dateOptionalTime"},
+		“html_body":{"type":"string","store":true},
+		“postDate":{"type":"date","format":"dateOptionalTime"}
+		}
+		}
+	}
+	}
